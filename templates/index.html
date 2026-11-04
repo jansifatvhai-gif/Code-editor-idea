@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070910">
+  <meta name="description" content="A mobile-first web IDE for HTML, CSS, JavaScript and Python.">
+  <title>Nova IDE — Mobile Web Studio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <main class="app-shell">
+    <header class="topbar glass">
+      <div class="brand">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        <div><strong>NOVA<span> IDE</span></strong><small>Mobile code studio</small></div>
+      </div>
+      <div class="top-actions">
+        <span class="save-state" id="saveState"><i></i> Saved</span>
+        <button class="icon-btn" id="exportBtn" aria-label="Export project" title="Export project">⇩</button>
+        <button class="icon-btn" id="settingsBtn" aria-label="Settings" title="Settings">⚙</button>
+      </div>
+    </header>
+
+    <section class="welcome">
+      <div><p class="eyebrow">YOUR CREATIVE WORKSPACE</p><h1>Build something<br><em>brilliant.</em></h1></div>
+      <div class="orb"><div class="orb-core"></div></div>
+    </section>
+
+    <section class="workspace glass">
+      <div class="workspace-head">
+        <div class="project-title"><span class="live-dot"></span><div><strong>My First Project</strong><small id="fileCount">3 files · Local project</small></div></div>
+        <button class="soft-btn" id="newFileBtn">＋ New file</button>
+      </div>
+
+      <div class="file-strip" id="fileStrip" role="tablist" aria-label="Project files"></div>
+
+      <div class="editor-toolbar">
+        <div class="file-meta"><span class="file-icon" id="fileIcon">◈</span><span id="activeFileName">index.html</span><span class="dirty-dot" id="dirtyDot"></span></div>
+        <div class="toolbar-actions">
+          <button class="mini-btn" id="importBtn">Import</button>
+          <button class="mini-btn" id="downloadBtn">↓ Save</button>
+        </div>
+      </div>
+
+      <div class="editor-wrap">
+        <div class="line-numbers" id="lineNumbers">1</div>
+        <textarea id="codeEditor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="Code editor"></textarea>
+      </div>
+
+      <div class="run-row">
+        <div class="language-label"><span class="pulse"></span><span id="languageLabel">HTML · CSS · JS</span></div>
+        <button class="run-btn" id="runBtn"><span>▶</span> Run preview</button>
+      </div>
+    </section>
+
+    <section class="output-section">
+      <div class="section-heading"><div><p class="eyebrow">LIVE ENVIRONMENT</p><h2>Output <span class="output-status" id="outputStatus">Ready</span></h2></div><button class="soft-btn" id="refreshBtn">↻ Refresh</button></div>
+      <div class="preview-card glass" id="previewCard">
+        <div class="preview-top"><div class="traffic"><i></i><i></i><i></i></div><span>preview.local</span><button id="expandPreview" class="expand-btn">↗</button></div>
+        <iframe id="previewFrame" title="Live website preview" sandbox="allow-scripts"></iframe>
+        <div class="preview-placeholder" id="previewPlaceholder">Your creation will appear here.<small>Write HTML, CSS or JavaScript, then tap Run.</small></div>
+      </div>
+      <div class="console-card glass">
+        <div class="console-head"><span>⌁ Console</span><button id="clearConsole">Clear</button></div>
+        <pre id="consoleOutput">Nova IDE initialized.\nReady when you are.</pre>
+      </div>
+    </section>
+
+    <footer><span>✦ NOVA IDE</span><span>Made for small screens</span></footer>
+  </main>
+
+  <input type="file" id="fileInput" hidden multiple>
+  <div class="toast" id="toast"></div>
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal glass">
+      <div class="modal-head"><h3 id="modalTitle">Create file</h3><button id="closeModal">×</button></div>
+      <p id="modalHint">Choose a name and extension.</p>
+      <input id="modalInput" placeholder="example.html" maxlength="60">
+      <div class="modal-actions"><button class="soft-btn" id="cancelModal">Cancel</button><button class="run-btn" id="confirmModal">Create</button></div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
